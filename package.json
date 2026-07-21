@@ -1,0 +1,9 @@
+{
+  "name": "ai-job-tracker",
+  "private": true,
+  "packageManager": "pnpm@10.11.1",
+  "scripts": {
+    "dev:web": "pnpm --filter web dev",
+    "dev:cms": "pnpm --filter cms develop"
+  }
+}
