@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/auth-provider";
@@ -8,6 +8,7 @@ import { useAuth } from "@/components/auth-provider";
 export default function AuthPage() {
   const router = useRouter();
   const { user, isLoading, login, register } = useAuth();
+  const [hasMounted, setHasMounted] = useState(false);
   const [mode, setMode] = useState<"login" | "register">("login");
   const [username, setUsername] = useState("");
   const [identifier, setIdentifier] = useState("");
@@ -16,12 +17,21 @@ export default function AuthPage() {
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  if (isLoading) {
+  useEffect(() => {
+    queueMicrotask(() => setHasMounted(true));
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      router.replace("/");
+    }
+  }, [router, user]);
+
+  if (!hasMounted || isLoading) {
     return <main className="auth-shell">Loading your account...</main>;
   }
 
   if (user) {
-    router.replace("/");
     return null;
   }
 
