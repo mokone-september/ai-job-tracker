@@ -1,175 +1,243 @@
-# 🤖 AI Job Tracker
+# AI Job Tracker
 
-An AI-powered job application tracking platform built with **Next.js 16**, **Strapi 5**, **TypeScript**, and **pnpm Workspaces**.
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-149eca?logo=react)](https://react.dev/)
+[![Strapi](https://img.shields.io/badge/Strapi-5-4945ff?logo=strapi)](https://strapi.io/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript)](https://www.typescriptlang.org/)
+[![pnpm](https://img.shields.io/badge/pnpm-10-f69220?logo=pnpm)](https://pnpm.io/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-The project is structured as a modern monorepo, separating the frontend, CMS, and shared packages for scalability and maintainability.
+An AI-powered job application tracker built with Next.js, Strapi, TypeScript,
+and pnpm Workspaces. The repository is a monorepo that separates the web
+frontend from the CMS and API foundation.
 
----
+> **Project status:** The repository is currently an early-stage scaffold. The
+> web app presents a coming-soon screen, while the Strapi app provides the
+> backend foundation. The planned product capabilities are listed in the
+> [roadmap](#roadmap).
 
-## ✨ Features
+## Table of Contents
 
-- 📋 Track job applications
-- 🤖 AI-assisted job application management
-- 📝 Manage companies, applications, and notes
-- 🔐 Authentication
-- 📊 Dashboard and analytics
-- 📱 Responsive design
-- 🎨 Modern UI with Tailwind CSS
-- ⚡ Fast development with Turbopack
-- 🧩 Shared packages using pnpm Workspaces
+- [Project Highlights](#project-highlights)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Environment Variables](#environment-variables)
+- [Development](#development)
+- [Available Scripts](#available-scripts)
+- [Performance and SEO](#performance-and-seo)
+- [Accessibility](#accessibility)
+- [Deployment](#deployment)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
+- [Author](#author)
 
----
+## Project Highlights
 
-## 📦 Tech Stack
+- Monorepo managed with pnpm Workspaces.
+- Next.js 16 frontend using the App Router and React 19.
+- Strapi 5 CMS and REST API foundation.
+- SQLite support for local development, with MySQL and PostgreSQL configuration
+	available in the CMS.
+- Chakra UI, Tailwind CSS, and responsive layout foundations in the web app.
+- TypeScript across both applications.
 
-### Frontend
+## Features
 
-- Next.js 16
-- React 19
-- TypeScript
-- Tailwind CSS
-- ESLint
+The product is planned to support:
 
-### Backend
+- Job application tracking.
+- AI-assisted job application management.
+- Company, application, and notes management.
+- Authentication and user accounts.
+- Dashboard and analytics.
+- CV analysis, interview preparation, and resume management.
+- Calendar integration and email reminders.
+- Responsive web experiences.
 
-- Strapi 5
-- SQLite (development)
-- REST API
+The current implementation includes the web application shell and Strapi
+configuration; the product features above remain in development.
 
-### Monorepo
+## Tech Stack
 
-- pnpm Workspaces
+| Area | Technology |
+| --- | --- |
+| Frontend | Next.js 16, React 19, TypeScript |
+| UI | Chakra UI, Tailwind CSS, Framer Motion, React Icons |
+| Forms and validation | React Hook Form, Zod |
+| Client data and state | TanStack Query, Axios, TinyBase |
+| Backend | Strapi 5, REST API |
+| Development database | SQLite with `better-sqlite3` |
+| Optional database configuration | MySQL and PostgreSQL |
+| Tooling | ESLint, pnpm Workspaces |
 
----
-
-## 📁 Project Structure
+## Project Structure
 
 ```text
 ai-job-tracker/
 ├── apps/
-│   ├── web/                 # Next.js frontend
-│   └── cms/                 # Strapi CMS
-│
-├── packages/
-│   ├── ui/                  # Shared UI components
-│   ├── config/              # Shared configuration
-│   └── types/               # Shared TypeScript types
-│
-├── package.json
-├── pnpm-workspace.yaml
+│   ├── web/                    # Next.js frontend
+│   │   ├── app/                # App Router pages, layout, and global styles
+│   │   ├── components/ui/      # Shared frontend UI providers and components
+│   │   ├── public/             # Static frontend assets
+│   │   └── package.json
+│   └── cms/                    # Strapi CMS and REST API
+│       ├── config/             # Server, database, API, and plugin settings
+│       ├── database/migrations/ # Database migrations
+│       ├── public/uploads/     # CMS upload directory
+│       ├── src/api/            # Content types and API modules
+│       └── package.json
+├── .github/                    # Issue and pull request templates
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── LICENSE
+├── package.json                # Root workspace scripts
 ├── pnpm-lock.yaml
-└── README.md
+├── pnpm-workspace.yaml
+├── README.md
+└── SECURITY.md
 ```
 
----
+The workspace is configured to include `packages/*` for future shared packages.
+No shared packages are currently present in the repository.
 
-## 🚀 Getting Started
+## Prerequisites
 
-### Prerequisites
+- Node.js 22 or newer. The CMS supports Node.js 20 through 26 according to its
+	package configuration; Node.js 22 is the recommended workspace version.
+- pnpm 10 or newer.
 
-- Node.js 22+
-- pnpm 10+
-
-Verify your installation:
+Verify your installed versions:
 
 ```bash
 node -v
 pnpm -v
 ```
 
----
+## Installation
 
-## 📥 Installation
-
-Clone the repository:
+Clone the repository, enter the project directory, and install dependencies:
 
 ```bash
-git clone https://github.com/mokone-september/ai-job-tracker.git
-```
 
-Move into the project:
-
-```bash
 cd ai-job-tracker
-```
-
-Install dependencies:
-
-```bash
 pnpm install
 ```
 
----
+## Environment Variables
 
-## ▶️ Development
+The CMS includes an example environment file at
+`apps/cms/.env.example`. Copy it to `apps/cms/.env` for local development and
+replace every placeholder secret with a securely generated value:
 
-### Run the Next.js application
+```bash
+cp apps/cms/.env.example apps/cms/.env
+```
+
+| Variable | Purpose |
+| --- | --- |
+| `HOST` | CMS bind host. |
+| `PORT` | CMS port; defaults to `1337`. |
+| `APP_KEYS` | Strapi application keys. |
+| `API_TOKEN_SALT` | Salt for Strapi API tokens. |
+| `ADMIN_JWT_SECRET` | Secret for Strapi admin authentication. |
+| `TRANSFER_TOKEN_SALT` | Salt for Strapi transfer tokens. |
+| `JWT_SECRET` | Secret for JWT authentication. |
+| `ENCRYPTION_KEY` | Strapi encryption key. |
+
+The database configuration also supports `DATABASE_CLIENT`, `DATABASE_URL`,
+and the `DATABASE_*` connection settings documented in
+`apps/cms/config/database.ts` when using a database other than the default
+SQLite setup. Never commit `.env` files or real credentials.
+
+## Development
+
+Start the Next.js application in one terminal:
 
 ```bash
 pnpm dev:web
 ```
 
-Runs on:
+The web app runs at <http://localhost:3000>.
 
-```
-http://localhost:3000
-```
-
----
-
-### Run Strapi
+Start Strapi in a separate terminal:
 
 ```bash
 pnpm dev:cms
 ```
 
-Runs on:
+The Strapi admin panel runs at <http://localhost:1337/admin>.
 
-```
-http://localhost:1337/admin
-```
+## Available Scripts
 
----
-
-## 📦 Workspace Commands
-
-Install dependencies:
-
-```bash
-pnpm install
-```
-
-Add a package to the frontend:
-
-```bash
-pnpm --filter web add package-name
-```
-
-Add a package to Strapi:
-
-```bash
-pnpm --filter cms add package-name
-```
-
-Add a shared dependency:
-
-```bash
-pnpm add package-name -w
-```
-
----
-
-## 🛠 Available Scripts
+### Workspace scripts
 
 | Command | Description |
-|---------|-------------|
-| `pnpm dev:web` | Start Next.js |
-| `pnpm dev:cms` | Start Strapi |
-| `pnpm install` | Install dependencies |
+| --- | --- |
+| `pnpm install` | Install workspace dependencies. |
+| `pnpm dev:web` | Start the Next.js development server. |
+| `pnpm dev:cms` | Start Strapi in development mode. |
+| `pnpm --filter web add package-name` | Add a dependency to the frontend. |
+| `pnpm --filter cms add package-name` | Add a dependency to the CMS. |
+| `pnpm add package-name -w` | Add a dependency to the workspace root. |
 
----
+### Application scripts
 
-## 📈 Roadmap
+| Command | Description |
+| --- | --- |
+| `pnpm --filter web build` | Build the Next.js application. |
+| `pnpm --filter web start` | Start the built Next.js application. |
+| `pnpm --filter web lint` | Run the frontend ESLint checks. |
+| `pnpm --filter cms build` | Build the Strapi admin application. |
+| `pnpm --filter cms start` | Start Strapi in production mode. |
+| `pnpm --filter cms console` | Open the Strapi console. |
+
+## Performance and SEO
+
+- Next.js provides the production build and routing foundation.
+- The frontend uses Next.js metadata with the title `AI Job Tracker` and a
+	description for search and browser contexts.
+- The frontend ESLint configuration includes Next.js Core Web Vitals rules.
+- Production builds should be tested with Lighthouse or another performance
+	tool after user-facing pages are implemented.
+
+No performance score, sitemap, robots policy, structured data, or analytics
+integration is currently claimed by this repository.
+
+## Accessibility
+
+- Chakra UI provides accessible component primitives and keyboard-friendly
+	interaction patterns when used according to its guidance.
+- The frontend sets the document language to English and uses responsive layout
+	primitives.
+- New pages should preserve semantic HTML, visible focus states, keyboard
+	navigation, readable color contrast, and useful labels for form controls.
+
+Accessibility should be verified with automated checks and keyboard or screen
+reader testing as the product grows.
+
+## Deployment
+
+### Web application on Vercel
+
+The Next.js application can be deployed to [Vercel](https://vercel.com/).
+Configure the project root and build settings for `apps/web`, or configure the
+equivalent pnpm workspace command in the Vercel project settings. Add any
+frontend environment variables in the Vercel dashboard rather than committing
+them to the repository.
+
+### Strapi CMS
+
+The CMS is a separate Strapi application and should be deployed to a host that
+supports its Node.js runtime and database requirements. Configure its secrets,
+port, and database connection using environment variables. The default local
+SQLite configuration is intended for development, not production workloads.
+
+## Roadmap
 
 - [ ] Authentication
 - [ ] User accounts
@@ -186,32 +254,37 @@ pnpm add package-name -w
 - [ ] CI/CD with GitHub Actions
 - [ ] Testing with Playwright
 
----
+## Contributing
 
-## 🤝 Contributing
-
-Contributions are welcome!
+Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) and
+[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) before contributing.
 
 1. Fork the repository.
-2. Create a feature branch.
-3. Commit your changes.
-4. Open a Pull Request.
+2. Create a focused feature branch.
+3. Make and verify your changes.
+4. Open a pull request using the repository template.
 
----
+For security issues, follow [SECURITY.md](SECURITY.md) rather than opening a
+public issue.
 
-## 📄 License
+## License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](LICENSE).
 
----
+## Acknowledgements
 
-## 👨‍💻 Author
+- [Next.js](https://nextjs.org/)
+- [React](https://react.dev/)
+- [Strapi](https://strapi.io/)
+- [Chakra UI](https://chakra-ui.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [pnpm](https://pnpm.io/)
+
+## Author
 
 **Thabiso Kenneth Mokone**
 
 - GitHub: https://github.com/mokone-september
 - LinkedIn: https://www.linkedin.com/in/mokone-september/
 
----
-
-Built with ❤️ using Next.js, Strapi, TypeScript, and pnpm Workspaces.
+Built with Next.js, Strapi, TypeScript, and pnpm Workspaces.
