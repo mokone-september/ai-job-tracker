@@ -9,6 +9,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -74,16 +75,15 @@ export default function Home() {
               🚀 Stay Tuned
             </Button>
 
-            <Button
-              variant="outline"
-              colorPalette="gray"
-              size="lg"
-              as="a"
+            <Link
               href="https://github.com/mokone-september/ai-job-tracker"
               target="_blank"
+              rel="noreferrer"
             >
+              <Button variant="outline" colorPalette="gray" size="lg">
               ⭐ View on GitHub
-            </Button>
+              </Button>
+            </Link>
           </Stack>
 
           <Text

@@ -1,0 +1,41 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
+    depends_on:
+      cms:
+        condition: service_healthy
+
+  cms:
+    build:
+      context: .
+      dockerfile: apps/cms/Dockerfile
+    environment:
+      HOST: 0.0.0.0
+      PORT: 1337
+      APP_KEYS: ${APP_KEYS:-docker-app-key-1,docker-app-key-2}
+      API_TOKEN_SALT: ${API_TOKEN_SALT:-docker-api-token-salt}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET:-docker-admin-jwt-secret}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT:-docker-transfer-token-salt}
+      JWT_SECRET: ${JWT_SECRET:-docker-jwt-secret}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY:-docker-encryption-key}
+    ports:
+      - "1337:1337"
+    volumes:
+      - cms-data:/app/apps/cms/.tmp
+      - cms-uploads:/app/apps/cms/public/uploads
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:1337/admin').then((response) => process.exit(response.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+volumes:
+  cms-data:
+  cms-uploads:

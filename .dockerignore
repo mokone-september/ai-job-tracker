@@ -1,0 +1,11 @@
+.git
+.github
+node_modules
+**/node_modules
+**/.next
+**/dist
+**/.tmp
+apps/cms/public/uploads
+.env
+**/.env
+pnpm-debug.log
