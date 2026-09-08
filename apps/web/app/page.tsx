@@ -10,8 +10,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Link from "next/link";
+import { useAuth } from "@/components/auth-provider";
 
 export default function Home() {
+  const { user, logout } = useAuth();
+
   return (
     <Box
       minH="100vh"
@@ -68,12 +71,17 @@ export default function Home() {
             justify="center"
             gap={4}
           >
-            <Button
-              colorPalette="blue"
-              size="lg"
-            >
-              🚀 Stay Tuned
-            </Button>
+            {user ? (
+              <Button colorPalette="blue" size="lg" onClick={logout}>
+                Sign out ({user.username})
+              </Button>
+            ) : (
+              <Link href="/auth">
+                <Button colorPalette="blue" size="lg">
+                  Sign in or register
+                </Button>
+              </Link>
+            )}
 
             <Link
               href="https://github.com/mokone-september/ai-job-tracker"
