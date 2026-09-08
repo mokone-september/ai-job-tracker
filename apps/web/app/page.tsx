@@ -72,9 +72,14 @@ export default function Home() {
             gap={4}
           >
             {user ? (
-              <Button colorPalette="blue" size="lg" onClick={logout}>
-                Sign out ({user.username})
-              </Button>
+              <>
+                <Link href="/cv-analysis">
+                  <Button colorPalette="blue" size="lg">Analyze your CV</Button>
+                </Link>
+                <Button variant="outline" colorPalette="gray" size="lg" onClick={logout}>
+                  Sign out ({user.username})
+                </Button>
+              </>
             ) : (
               <Link href="/auth">
                 <Button colorPalette="blue" size="lg">

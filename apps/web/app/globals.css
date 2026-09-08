@@ -101,6 +101,232 @@ body {
   font: inherit;
 }
 
+.analysis-shell {
+  min-height: 100vh;
+  padding: 3rem clamp(1rem, 5vw, 5rem);
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.analysis-header,
+.analysis-layout {
+  width: min(100%, 75rem);
+  margin: 0 auto;
+}
+
+.analysis-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.analysis-header h1 {
+  margin: 0.5rem 0;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1;
+}
+
+.analysis-subtitle {
+  max-width: 34rem;
+  margin: 0;
+  color: #475569;
+}
+
+.account-chip,
+.keyword-list span {
+  border: 1px solid #bae6fd;
+  border-radius: 999px;
+  padding: 0.45rem 0.8rem;
+  background: #e0f2fe;
+  color: #075985;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.analysis-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 1.5rem;
+}
+
+.analysis-form,
+.analysis-result {
+  border: 1px solid #cbd5e1;
+  border-radius: 1rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: white;
+  box-shadow: 0 1rem 3rem rgb(15 23 42 / 7%);
+}
+
+.analysis-form {
+  display: grid;
+  align-content: start;
+  gap: 1.25rem;
+}
+
+.analysis-form label {
+  display: grid;
+  gap: 0.5rem;
+  color: #334155;
+  font-weight: 700;
+}
+
+.analysis-form label span {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.analysis-form textarea {
+  resize: vertical;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  padding: 0.8rem;
+  color: #0f172a;
+  font: inherit;
+  line-height: 1.5;
+}
+
+.analysis-form textarea:focus {
+  outline: 3px solid rgb(14 165 233 / 25%);
+  border-color: #0284c7;
+}
+
+.analysis-form > button {
+  border: 0;
+  border-radius: 0.5rem;
+  padding: 0.85rem 1rem;
+  background: #0369a1;
+  color: white;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.analysis-form > button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.analysis-empty,
+.analysis-loading {
+  display: grid;
+  min-height: 24rem;
+  place-content: center;
+  text-align: center;
+}
+
+.analysis-empty {
+  padding: 2rem;
+  color: #64748b;
+}
+
+.analysis-mark {
+  color: #0284c7;
+  font-size: 3rem;
+}
+
+.analysis-empty h2 {
+  margin: 1rem 0 0.5rem;
+  color: #0f172a;
+}
+
+.analysis-empty p {
+  max-width: 25rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.analysis-loading {
+  color: #0369a1;
+  font-weight: 700;
+}
+
+.score-row {
+  display: flex;
+  align-items: end;
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.score-row strong {
+  color: #0369a1;
+  font-size: 3.5rem;
+  line-height: 0.9;
+}
+
+.score-row small {
+  color: #94a3b8;
+  font-size: 1rem;
+}
+
+.score-bar {
+  flex: 1;
+  height: 0.6rem;
+  margin-bottom: 0.25rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e2e8f0;
+}
+
+.score-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #0ea5e9;
+}
+
+.analysis-summary {
+  margin: 1.5rem 0;
+  color: #334155;
+  line-height: 1.7;
+}
+
+.analysis-group,
+.keyword-group {
+  padding: 1rem 0;
+  border-top: 1px solid #e2e8f0;
+}
+
+.analysis-group h3,
+.keyword-group h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+}
+
+.analysis-group ul {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.keyword-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+@media (max-width: 800px) {
+  .analysis-header,
+  .analysis-layout {
+    display: block;
+  }
+
+  .account-chip {
+    display: inline-block;
+    margin-top: 1rem;
+  }
+
+  .analysis-result {
+    margin-top: 1rem;
+  }
+}
+
 .auth-form input:focus {
   outline: 3px solid rgb(14 165 233 / 25%);
   border-color: #0284c7;
