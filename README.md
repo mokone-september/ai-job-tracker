@@ -61,7 +61,7 @@ The product is planned to support:
 
 The current implementation includes authentication, user accounts, CV analysis,
 interview preparation, resume management, company tracking, a job application
-dashboard, calendar events, and email reminder delivery through the Resend API.
+dashboard, analytics, calendar events, and email reminder delivery through the Resend API.
 Calendar events are still stored locally in the browser, so scheduled delivery
 requires an external worker or cron job to call the reminder delivery route.
 
@@ -263,7 +263,7 @@ SQLite configuration is intended for development, not production workloads.
 - [x] Job application dashboard
 - [x] Calendar integration
 - [x] Email delivery for reminders
-- [ ] Analytics
+- [x] Analytics
 - [ ] Dark mode
 - [x] Docker support
 - [ ] CI/CD with GitHub Actions

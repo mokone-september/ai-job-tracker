@@ -91,6 +91,9 @@ export default function Home() {
                 <Link href="/calendar">
                   <Button variant="outline" colorPalette="gray" size="lg">Calendar</Button>
                 </Link>
+                <Link href="/analytics">
+                  <Button variant="outline" colorPalette="gray" size="lg">Analytics</Button>
+                </Link>
                 <Button variant="outline" colorPalette="gray" size="lg" onClick={logout}>
                   Sign out ({user.username})
                 </Button>
