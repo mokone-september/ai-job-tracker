@@ -11,10 +11,10 @@ An AI-powered job application tracker built with Next.js, Strapi, TypeScript,
 and pnpm Workspaces. The repository is a monorepo that separates the web
 frontend from the CMS and API foundation.
 
-> **Project status:** The repository is currently an early-stage scaffold. The
-> web app presents a coming-soon screen, while the Strapi app provides the
-> backend foundation. The planned product capabilities are listed in the
-> [roadmap](#roadmap).
+> **Project status:** The repository is an early-stage product in active
+> development. It currently includes authentication, user accounts, and an
+> AI-assisted CV analysis flow backed by the Strapi API. The remaining planned
+> capabilities are listed in the [roadmap](#roadmap).
 
 ## Table of Contents
 
@@ -59,8 +59,9 @@ The product is planned to support:
 - Calendar integration and email reminders.
 - Responsive web experiences.
 
-The current implementation includes the web application shell and Strapi
-configuration; the product features above remain in development.
+The current implementation includes authentication, user accounts, CV analysis,
+and the web application shell with Strapi configuration. The remaining product
+features are still in development.
 
 ## Tech Stack
 
@@ -239,9 +240,9 @@ SQLite configuration is intended for development, not production workloads.
 
 ## Roadmap
 
-- [ ] Authentication
-- [ ] User accounts
-- [ ] AI-powered CV analysis
+- [x] Authentication
+- [x] User accounts
+- [x] AI-powered CV analysis
 - [ ] AI interview preparation
 - [ ] Resume management
 - [ ] Company tracker
@@ -250,7 +251,7 @@ SQLite configuration is intended for development, not production workloads.
 - [ ] Email reminders
 - [ ] Analytics
 - [ ] Dark mode
-- [ ] Docker support
+- [x] Docker support
 - [ ] CI/CD with GitHub Actions
 - [ ] Testing with Playwright
 
