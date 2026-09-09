@@ -79,6 +79,9 @@ export default function Home() {
                 <Link href="/interview-prep">
                   <Button variant="outline" colorPalette="gray" size="lg">Prepare for interview</Button>
                 </Link>
+                <Link href="/resume">
+                  <Button variant="outline" colorPalette="gray" size="lg">Manage resume</Button>
+                </Link>
                 <Button variant="outline" colorPalette="gray" size="lg" onClick={logout}>
                   Sign out ({user.username})
                 </Button>

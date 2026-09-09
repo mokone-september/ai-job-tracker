@@ -60,7 +60,8 @@ The product is planned to support:
 - Responsive web experiences.
 
 The current implementation includes authentication, user accounts, CV analysis,
-interview preparation, and the web application shell with Strapi configuration.
+interview preparation, resume management, and the web application shell with
+Strapi configuration.
 The remaining product features are still in development.
 
 ## Tech Stack
@@ -244,7 +245,7 @@ SQLite configuration is intended for development, not production workloads.
 - [x] User accounts
 - [x] AI-powered CV analysis
 - [x] AI interview preparation
-- [ ] Resume management
+- [x] Resume management
 - [ ] Company tracker
 - [ ] Job application dashboard
 - [ ] Calendar integration
