@@ -815,15 +815,114 @@ body {
   background: #f8fafc;
 }
 
+.calendar-shell {
+  min-height: 100vh;
+  padding: 3rem clamp(1rem, 5vw, 5rem);
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.calendar-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 1.5rem;
+  width: min(100%, 75rem);
+  margin: 0 auto;
+}
+
+.calendar-form-panel h2,
+.calendar-panel h2 {
+  margin: 0 0 1rem;
+  font-size: 1.3rem;
+}
+
+.calendar-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.calendar-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.calendar-item {
+  border: 1px solid #e2e8f0;
+  border-radius: 0.9rem;
+  padding: 1rem;
+  background: #f8fafc;
+}
+
+.calendar-item-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.calendar-item-header h3 {
+  margin: 0;
+  color: #0f172a;
+}
+
+.calendar-item-header p {
+  margin: 0.35rem 0 0;
+  color: #475569;
+}
+
+.calendar-item .danger-button {
+  margin-top: 1rem;
+  border: 0;
+  border-radius: 0.5rem;
+  padding: 0.7rem 0.9rem;
+  background: #fee2e2;
+  color: #991b1b;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.status-interview { background: #fef3c7; color: #92400e; }
+.status-follow-up { background: #dbeafe; color: #1d4ed8; }
+.status-deadline { background: #fee2e2; color: #991b1b; }
+.status-reminder { background: #e0f2fe; color: #075985; }
+
 @media (max-width: 800px) {
   .resume-layout,
   .resume-form-grid,
   .company-layout,
   .company-toolbar,
   .dashboard-grid,
-  .dashboard-panels {
+  .dashboard-panels,
+  .calendar-layout,
+  .calendar-row {
     display: block;
   }
+
+  .resume-preview {
+    margin-top: 1rem;
+  }
+
+  .resume-form-grid .resume-field + .resume-field {
+    margin-top: 1.1rem;
+  }
+
+  .company-card-header,
+  .company-actions,
+  .calendar-item-header {
+    display: block;
+  }
+
+  .company-card-header .status-badge,
+  .company-actions .danger-button {
+    margin-top: 0.75rem;
+  }
+
+  .metric-card + .metric-card {
+    margin-top: 1rem;
+  }
+}
 
   .resume-preview {
     margin-top: 1rem;

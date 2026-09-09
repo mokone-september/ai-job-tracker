@@ -248,7 +248,7 @@ SQLite configuration is intended for development, not production workloads.
 - [x] Resume management
 - [x] Company tracker
 - [x] Job application dashboard
-- [ ] Calendar integration
+- [x] Calendar integration
 - [ ] Email reminders
 - [ ] Analytics
 - [ ] Dark mode
