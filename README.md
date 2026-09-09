@@ -56,13 +56,14 @@ The product is planned to support:
 - Authentication and user accounts.
 - Dashboard and analytics.
 - CV analysis, interview preparation, and resume management.
-- Calendar integration and email reminders.
+- Calendar integration and configurable email reminder preferences.
 - Responsive web experiences.
 
 The current implementation includes authentication, user accounts, CV analysis,
-interview preparation, resume management, and the web application shell with
-Strapi configuration.
-The remaining product features are still in development.
+interview preparation, resume management, company tracking, a job application
+dashboard, calendar events, and local email reminder preferences. Actual email
+delivery still requires a transactional email provider, server-side event
+persistence, and a scheduled worker.
 
 ## Tech Stack
 
@@ -249,7 +250,7 @@ SQLite configuration is intended for development, not production workloads.
 - [x] Company tracker
 - [x] Job application dashboard
 - [x] Calendar integration
-- [ ] Email reminders
+- [ ] Email delivery for reminders
 - [ ] Analytics
 - [ ] Dark mode
 - [x] Docker support

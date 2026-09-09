@@ -7,6 +7,7 @@ import { useAuth } from "@/components/auth-provider";
 const storageKey = "ai-job-tracker-calendar";
 
 type EventType = "Interview" | "Follow-up" | "Deadline" | "Reminder";
+type ReminderOffset = "15 minutes before" | "1 hour before" | "1 day before";
 
 type CalendarEvent = {
   id: string;
@@ -15,6 +16,9 @@ type CalendarEvent = {
   date: string;
   time: string;
   notes: string;
+  reminderEnabled: boolean;
+  reminderEmail: string;
+  reminderOffset: ReminderOffset;
   createdAt: string;
 };
 
@@ -24,12 +28,16 @@ const defaultDraft = {
   date: "",
   time: "",
   notes: "",
+  reminderEnabled: false,
+  reminderEmail: "",
+  reminderOffset: "1 day before" as ReminderOffset,
 };
 
 export default function CalendarPage() {
   const { user } = useAuth();
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [draft, setDraft] = useState(defaultDraft);
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
     try {
@@ -42,12 +50,16 @@ export default function CalendarPage() {
       }
     } catch {
       window.localStorage.removeItem(storageKey);
+    } finally {
+      setHasLoaded(true);
     }
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem(storageKey, JSON.stringify(events));
-  }, [events]);
+    if (hasLoaded) {
+      window.localStorage.setItem(storageKey, JSON.stringify(events));
+    }
+  }, [events, hasLoaded]);
 
   const upcoming = useMemo(
     () => [...events].sort((a, b) => new Date(`${a.date}T${a.time || "00:00"}`).getTime() - new Date(`${b.date}T${b.time || "00:00"}`).getTime()),
@@ -71,6 +83,9 @@ export default function CalendarPage() {
       date: draft.date,
       time: draft.time,
       notes: draft.notes.trim(),
+      reminderEnabled: draft.reminderEnabled,
+      reminderEmail: draft.reminderEmail.trim() || user?.email || "",
+      reminderOffset: draft.reminderOffset,
       createdAt: new Date().toISOString(),
     };
 
@@ -125,6 +140,27 @@ export default function CalendarPage() {
               Notes
               <textarea value={draft.notes} onChange={(event) => updateDraft("notes", event.target.value)} rows={5} placeholder="Zoom link, prep notes, hiring manager details..." />
             </label>
+            <label className="checkbox-field">
+              <input type="checkbox" checked={draft.reminderEnabled} onChange={(event) => setDraft((current) => ({ ...current, reminderEnabled: event.target.checked }))} />
+              <span>Configure an email reminder</span>
+            </label>
+            {draft.reminderEnabled && (
+              <div className="reminder-options">
+                <label>
+                  Reminder email
+                  <input type="email" value={draft.reminderEmail || user?.email || ""} onChange={(event) => updateDraft("reminderEmail", event.target.value)} placeholder="you@example.com" required />
+                </label>
+                <label>
+                  Send
+                  <select value={draft.reminderOffset} onChange={(event) => updateDraft("reminderOffset", event.target.value)}>
+                    <option value="15 minutes before">15 minutes before</option>
+                    <option value="1 hour before">1 hour before</option>
+                    <option value="1 day before">1 day before</option>
+                  </select>
+                </label>
+                <p className="reminder-note">Reminder preferences are saved locally. Email delivery will be available after a provider and server scheduler are connected.</p>
+              </div>
+            )}
             <button type="submit">Add event</button>
           </form>
         </section>
@@ -155,6 +191,12 @@ export default function CalendarPage() {
                   </div>
 
                   {event.notes && <p className="company-notes">{event.notes}</p>}
+
+                  {event.reminderEnabled && (
+                    <p className="reminder-status">
+                      Email reminder configured for {event.reminderEmail || user?.email || "your account"}, {event.reminderOffset}.
+                    </p>
+                  )}
 
                   <button type="button" className="danger-button" onClick={() => removeEvent(event.id)}>Remove</button>
                 </article>
