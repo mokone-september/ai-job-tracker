@@ -76,6 +76,9 @@ export default function Home() {
                 <Link href="/cv-analysis">
                   <Button colorPalette="blue" size="lg">Analyze your CV</Button>
                 </Link>
+                <Link href="/interview-prep">
+                  <Button variant="outline" colorPalette="gray" size="lg">Prepare for interview</Button>
+                </Link>
                 <Button variant="outline" colorPalette="gray" size="lg" onClick={logout}>
                   Sign out ({user.username})
                 </Button>

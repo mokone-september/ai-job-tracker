@@ -53,6 +53,7 @@ export default function CvAnalysisPage() {
           <p className="analysis-subtitle">
             Turn a draft CV into a sharper, more targeted application.
           </p>
+          <Link className="analysis-tool-link" href="/interview-prep">Prepare for an interview →</Link>
         </div>
         {user && <span className="account-chip">{user.username}</span>}
       </header>

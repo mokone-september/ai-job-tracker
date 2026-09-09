@@ -284,6 +284,36 @@ body {
   line-height: 1.7;
 }
 
+.analysis-tool-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  color: #0369a1;
+  font-weight: 700;
+}
+
+.question-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.question-item {
+  padding: 1rem;
+  border-left: 3px solid #38bdf8;
+  background: #f0f9ff;
+}
+
+.question-item h4 {
+  margin: 0 0 0.7rem;
+  color: #0f172a;
+  line-height: 1.4;
+}
+
+.question-item p {
+  margin: 0.45rem 0 0;
+  color: #475569;
+  line-height: 1.5;
+}
+
 .analysis-group,
 .keyword-group {
   padding: 1rem 0;
