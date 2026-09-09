@@ -171,6 +171,10 @@ export default function CompanyTrackerPage() {
             </select>
           </div>
 
+          <div className="dashboard-actions company-dashboard-link">
+            <Link href="/dashboard">Open dashboard</Link>
+          </div>
+
           {visibleCompanies.length === 0 ? (
             <div className="company-empty">
               <span className="analysis-mark">✦</span>

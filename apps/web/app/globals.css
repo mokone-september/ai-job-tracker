@@ -683,11 +683,145 @@ body {
   color: #991b1b;
 }
 
+.dashboard-shell {
+  min-height: 100vh;
+  padding: 3rem clamp(1rem, 5vw, 5rem);
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.dashboard-content {
+  width: min(100%, 75rem);
+  margin: 0 auto;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.metric-card,
+.dashboard-panel {
+  border: 1px solid #cbd5e1;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  background: white;
+  box-shadow: 0 1rem 3rem rgb(15 23 42 / 7%);
+}
+
+.metric-card span {
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.metric-card strong {
+  display: block;
+  margin-top: 0.65rem;
+  color: #0f172a;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  line-height: 1;
+}
+
+.dashboard-panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.dashboard-panel h2 {
+  margin: 0 0 1rem;
+  font-size: 1.15rem;
+}
+
+.stage-list,
+.activity-list {
+  list-style: none;
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+}
+
+.stage-list li,
+.activity-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.stage-list strong,
+.activity-list strong {
+  color: #0f172a;
+}
+
+.activity-list li {
+  align-items: start;
+}
+
+.activity-list span {
+  display: block;
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.dashboard-empty {
+  width: min(100%, 42rem);
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 1rem;
+  background: white;
+  text-align: center;
+  box-shadow: 0 1rem 3rem rgb(15 23 42 / 7%);
+}
+
+.dashboard-empty h2 {
+  margin: 1rem 0 0.5rem;
+  color: #0f172a;
+}
+
+.dashboard-empty p {
+  margin: 0 0 1.5rem;
+  color: #64748b;
+}
+
+.dashboard-actions a {
+  display: inline-block;
+  border-radius: 0.5rem;
+  padding: 0.8rem 1rem;
+  background: #0369a1;
+  color: white;
+  font-weight: 700;
+}
+
+.wide-panel {
+  padding: 1.5rem;
+}
+
+.dashboard-company-list {
+  margin-top: 0.5rem;
+}
+
+.dashboard-company-card {
+  background: #f8fafc;
+}
+
 @media (max-width: 800px) {
   .resume-layout,
   .resume-form-grid,
   .company-layout,
-  .company-toolbar {
+  .company-toolbar,
+  .dashboard-grid,
+  .dashboard-panels {
     display: block;
   }
 
@@ -708,20 +842,9 @@ body {
   .company-actions .danger-button {
     margin-top: 0.75rem;
   }
-}
 
-@media print {
-  .resume-shell {
-    padding: 0;
-    background: white;
-  }
-
-  .resume-preview {
+  .metric-card + .metric-card {
     margin-top: 1rem;
-  }
-
-  .resume-form-grid .resume-field + .resume-field {
-    margin-top: 1.1rem;
   }
 }
 

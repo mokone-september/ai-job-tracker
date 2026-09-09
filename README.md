@@ -247,7 +247,7 @@ SQLite configuration is intended for development, not production workloads.
 - [x] AI interview preparation
 - [x] Resume management
 - [x] Company tracker
-- [ ] Job application dashboard
+- [x] Job application dashboard
 - [ ] Calendar integration
 - [ ] Email reminders
 - [ ] Analytics
