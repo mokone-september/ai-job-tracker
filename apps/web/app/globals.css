@@ -604,6 +604,34 @@ body {
   color: #075985;
 }
 
+.reminder-status p {
+  margin: 0 0 0.65rem;
+}
+
+.reminder-status .secondary-button {
+  border: 1px solid #bae6fd;
+  border-radius: 0.5rem;
+  padding: 0.55rem 0.75rem;
+  background: #e0f2fe;
+  color: #075985;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.reminder-status .secondary-button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.reminder-feedback {
+  margin: 1rem 0 0;
+  color: #075985;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
 .company-form button,
 .company-actions .danger-button {
   border: 0;

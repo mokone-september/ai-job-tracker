@@ -61,9 +61,9 @@ The product is planned to support:
 
 The current implementation includes authentication, user accounts, CV analysis,
 interview preparation, resume management, company tracking, a job application
-dashboard, calendar events, and local email reminder preferences. Actual email
-delivery still requires a transactional email provider, server-side event
-persistence, and a scheduled worker.
+dashboard, calendar events, and email reminder delivery through the Resend API.
+Calendar events are still stored locally in the browser, so scheduled delivery
+requires an external worker or cron job to call the reminder delivery route.
 
 ## Tech Stack
 
@@ -151,6 +151,18 @@ cp apps/cms/.env.example apps/cms/.env
 | `TRANSFER_TOKEN_SALT` | Salt for Strapi transfer tokens. |
 | `JWT_SECRET` | Secret for JWT authentication. |
 | `ENCRYPTION_KEY` | Strapi encryption key. |
+
+For email reminder delivery, configure these variables for the web app. The
+sender address must be verified with Resend:
+
+| Variable | Purpose |
+| --- | --- |
+| `RESEND_API_KEY` | Resend API key used by the reminder delivery route. |
+| `REMINDER_FROM_EMAIL` | Verified sender address for reminder emails. |
+
+The calendar page's **Send test email** action verifies provider configuration.
+Production scheduling still needs a cron or worker to select due local events
+from a server-backed store and call `POST /api/reminders/send`.
 
 The database configuration also supports `DATABASE_CLIENT`, `DATABASE_URL`,
 and the `DATABASE_*` connection settings documented in
@@ -250,7 +262,7 @@ SQLite configuration is intended for development, not production workloads.
 - [x] Company tracker
 - [x] Job application dashboard
 - [x] Calendar integration
-- [ ] Email delivery for reminders
+- [x] Email delivery for reminders
 - [ ] Analytics
 - [ ] Dark mode
 - [x] Docker support

@@ -38,6 +38,8 @@ export default function CalendarPage() {
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [draft, setDraft] = useState(defaultDraft);
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [sendingId, setSendingId] = useState<string | null>(null);
+  const [deliveryMessage, setDeliveryMessage] = useState("");
 
   useEffect(() => {
     try {
@@ -95,6 +97,33 @@ export default function CalendarPage() {
 
   function removeEvent(id: string) {
     setEvents((current) => current.filter((event) => event.id !== id));
+  }
+
+  async function sendTestReminder(event: CalendarEvent) {
+    const recipient = event.reminderEmail || user?.email || "";
+    setSendingId(event.id);
+    setDeliveryMessage("");
+
+    try {
+      const response = await fetch("/api/reminders/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          recipient,
+          title: event.title,
+          eventType: event.type,
+          date: event.date,
+          time: event.time,
+          notes: event.notes,
+        }),
+      });
+      const result = await response.json();
+      setDeliveryMessage(response.ok ? "Test reminder sent." : result.error || "The reminder could not be sent.");
+    } catch {
+      setDeliveryMessage("The reminder service could not be reached.");
+    } finally {
+      setSendingId(null);
+    }
   }
 
   return (
@@ -158,7 +187,7 @@ export default function CalendarPage() {
                     <option value="1 day before">1 day before</option>
                   </select>
                 </label>
-                <p className="reminder-note">Reminder preferences are saved locally. Email delivery will be available after a provider and server scheduler are connected.</p>
+                <p className="reminder-note">Reminder preferences are saved locally. Use the test action after configuring the email provider.</p>
               </div>
             )}
             <button type="submit">Add event</button>
@@ -193,9 +222,12 @@ export default function CalendarPage() {
                   {event.notes && <p className="company-notes">{event.notes}</p>}
 
                   {event.reminderEnabled && (
-                    <p className="reminder-status">
-                      Email reminder configured for {event.reminderEmail || user?.email || "your account"}, {event.reminderOffset}.
-                    </p>
+                    <div className="reminder-status">
+                      <p>Email reminder configured for {event.reminderEmail || user?.email || "your account"}, {event.reminderOffset}.</p>
+                      <button type="button" className="secondary-button" onClick={() => sendTestReminder(event)} disabled={sendingId === event.id}>
+                        {sendingId === event.id ? "Sending..." : "Send test email"}
+                      </button>
+                    </div>
                   )}
 
                   <button type="button" className="danger-button" onClick={() => removeEvent(event.id)}>Remove</button>
@@ -203,6 +235,7 @@ export default function CalendarPage() {
               ))}
             </div>
           )}
+          {deliveryMessage && <p className="reminder-feedback" role="status">{deliveryMessage}</p>}
         </section>
       </div>
     </main>
