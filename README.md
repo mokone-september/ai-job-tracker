@@ -264,7 +264,7 @@ SQLite configuration is intended for development, not production workloads.
 - [x] Calendar integration
 - [x] Email delivery for reminders
 - [x] Analytics
-- [ ] Dark mode
+- [x] Dark mode
 - [x] Docker support
 - [ ] CI/CD with GitHub Actions
 - [ ] Testing with Playwright

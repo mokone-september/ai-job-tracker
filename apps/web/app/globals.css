@@ -7,6 +7,11 @@
   --font-mono: "SFMono-Regular", "Consolas", "Liberation Mono", monospace;
 }
 
+html.dark {
+  --background: #0f172a;
+  --foreground: #e2e8f0;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -14,17 +19,106 @@
   --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+}
+
+.theme-toggle {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 20;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  background: #fff;
+  color: #0f172a;
+  box-shadow: 0 0.75rem 2rem rgb(15 23 42 / 18%);
+}
+
+html.dark body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+html.dark .auth-shell,
+html.dark .analysis-shell,
+html.dark .company-shell,
+html.dark .dashboard-shell,
+html.dark .calendar-shell,
+html.dark .analytics-shell {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+html.dark .auth-card,
+html.dark .company-form-panel,
+html.dark .company-list-panel,
+html.dark .dashboard-panel,
+html.dark .metric-card {
+  border-color: #334155;
+  background: #1e293b;
+  color: #e2e8f0;
+  box-shadow: 0 1rem 3rem rgb(2 6 23 / 25%);
+}
+
+html.dark .auth-card h1,
+html.dark .analysis-header h1,
+html.dark .company-form-panel h2,
+html.dark .company-list-panel h2,
+html.dark .dashboard-panel h2,
+html.dark .metric-card strong,
+html.dark .company-card h3,
+html.dark .calendar-item-header h3,
+html.dark .dashboard-empty h2 {
+  color: #f8fafc;
+}
+
+html.dark .auth-intro,
+html.dark .analysis-subtitle,
+html.dark .company-form label,
+html.dark .company-card p,
+html.dark .company-meta,
+html.dark .company-notes,
+html.dark .activity-list span,
+html.dark .stage-list span,
+html.dark .reminder-note,
+html.dark .dashboard-empty p,
+html.dark .monthly-column strong,
+html.dark .monthly-column > span {
+  color: #94a3b8;
+}
+
+html.dark .auth-form input,
+html.dark .company-form input,
+html.dark .company-form textarea,
+html.dark .company-form select,
+html.dark .company-toolbar input,
+html.dark .company-toolbar select,
+html.dark .company-actions select {
+  border-color: #475569;
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+html.dark .company-card,
+html.dark .calendar-item,
+html.dark .dashboard-company-card {
+  border-color: #334155;
+  background: #172033;
+}
+
+html.dark .dashboard-empty {
+  border-color: #334155;
+  background: #1e293b;
+  box-shadow: 0 1rem 3rem rgb(2 6 23 / 25%);
+}
+
+html.dark .theme-toggle {
+  border-color: #475569;
+  background: #1e293b;
+  color: #f8fafc;
 }
 
 .auth-shell {
