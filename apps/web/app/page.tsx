@@ -82,6 +82,9 @@ export default function Home() {
                 <Link href="/resume">
                   <Button variant="outline" colorPalette="gray" size="lg">Manage resume</Button>
                 </Link>
+                <Link href="/company-tracker">
+                  <Button variant="outline" colorPalette="gray" size="lg">Track companies</Button>
+                </Link>
                 <Button variant="outline" colorPalette="gray" size="lg" onClick={logout}>
                   Sign out ({user.username})
                 </Button>
