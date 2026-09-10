@@ -257,18 +257,54 @@ reader testing as the product grows.
 
 ### Web application on Vercel
 
-The Next.js application can be deployed to [Vercel](https://vercel.com/).
-Configure the project root and build settings for `apps/web`, or configure the
-equivalent pnpm workspace command in the Vercel project settings. Add any
-frontend environment variables in the Vercel dashboard rather than committing
-them to the repository.
+The Next.js application can be deployed to [Vercel](https://vercel.com/)'s free
+tier:
+
+1. Import the GitHub repository and set the Root Directory to `apps/web`.
+2. Keep the framework as Next.js and use `pnpm build` as the build command.
+3. Add `NEXT_PUBLIC_API_URL` with the deployed CMS URL, including `/api`, for
+	example `https://your-cms.onrender.com/api`.
+4. Deploy and copy the resulting Vercel URL for the CMS CORS setting below.
+
+Do not put `OPENAI_API_KEY` in the browser. The CV analysis route reads it only
+on the server; add it as a Vercel environment variable if paid AI analysis is
+enabled. Without it, the local deterministic analysis fallback is used.
 
 ### Strapi CMS
 
-The CMS is a separate Strapi application and should be deployed to a host that
-supports its Node.js runtime and database requirements. Configure its secrets,
-port, and database connection using environment variables. The default local
-SQLite configuration is intended for development, not production workloads.
+The CMS can run as a free [Render](https://render.com/) web service. Create a
+Web Service from this repository with these settings:
+
+- Root directory: repository root
+- Build command: `corepack enable && pnpm install --frozen-lockfile && pnpm --filter cms build`
+- Start command: `pnpm --filter cms start`
+- Node version: `22`
+
+Create a free PostgreSQL database with [Neon](https://neon.tech/) and set these
+Render variables:
+
+```text
+DATABASE_CLIENT=postgres
+DATABASE_URL=<Neon pooled connection string>
+CORS_ORIGINS=https://your-app.vercel.app
+HOST=0.0.0.0
+PORT=10000
+APP_KEYS=<comma-separated-random-values>
+API_TOKEN_SALT=<random-value>
+ADMIN_JWT_SECRET=<random-value>
+TRANSFER_TOKEN_SALT=<random-value>
+JWT_SECRET=<random-value>
+ENCRYPTION_KEY=<random-value>
+```
+
+Render provides the `PORT` value automatically; set the CMS port to that value
+or use Render's default. The local SQLite configuration is for development,
+not production. Uploads are not persistent on an ephemeral free service, so
+configure external object storage before relying on user-uploaded files.
+
+After the CMS deploys, replace `NEXT_PUBLIC_API_URL` in Vercel with its public
+`/api` URL and redeploy the web app. Open the CMS admin at
+`https://your-cms.onrender.com/admin` to create the first administrator.
 
 ## Roadmap
 

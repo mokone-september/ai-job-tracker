@@ -1,13 +1,13 @@
 import type { Core } from '@strapi/strapi';
 
-const config: Core.Config.Middlewares = [
+const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Middlewares => [
   'strapi::logger',
   'strapi::errors',
   'strapi::security',
   {
     name: 'strapi::cors',
     config: {
-      origin: ['http://localhost:3000'],
+      origin: env.array('CORS_ORIGINS', ['http://localhost:3000']),
     },
   },
   'strapi::poweredBy',
