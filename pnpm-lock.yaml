@@ -6,7 +6,11 @@ settings:
 
 importers:
 
-  .: {}
+  .:
+    devDependencies:
+      '@playwright/test':
+        specifier: ^1.52.0
+        version: 1.63.0
 
   apps/cms:
     dependencies:
@@ -70,7 +74,7 @@ importers:
         version: 12.42.2(@emotion/is-prop-valid@1.4.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       next:
         specifier: 16.2.10
-        version: 16.2.10(@babel/core@7.29.7)(@opentelemetry/api@1.9.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        version: 16.2.10(@babel/core@7.29.7)(@opentelemetry/api@1.9.0)(@playwright/test@1.63.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -1228,6 +1232,11 @@ packages:
 
   '@paralleldrive/cuid2@2.2.2':
     resolution: {integrity: sha512-ZOBkgDwEdoYVlSeRbYYXs0S9MejQofiVYoTbKzy/6GQa39/q5tQU2IX46+shYnUkpEl3wc+J6wRlar7r2EK2xA==}
+
+  '@playwright/test@1.63.0':
+    resolution: {integrity: sha512-oxMK4vllB9RK5NQ2l1pq1IfOf2AvnEuj/vYGDj0H2nMtmtZpKtCwt/l00GEO6xjGfpBNAvjovvYdCm50dRQkpQ==}
+    engines: {node: '>=20'}
+    hasBin: true
 
   '@pmmmwh/react-refresh-webpack-plugin@0.5.17':
     resolution: {integrity: sha512-tXDyE1/jzFsHXjhRZQ3hMl0IVhYe5qula43LDWIhVfjp9G/nT5OQY5AORVOrkEGAUltBJOfOWeETbmhm6kHhuQ==}
@@ -6310,6 +6319,16 @@ packages:
   player.style@0.0.8:
     resolution: {integrity: sha512-ScmFzio3634eEn+ejpkEw13F5xYvnPghtaZz/Kg7QQP78ECrxdjRVqwVPZhUwbYxmg5OIScByOgHfrHpzTtR1Q==}
 
+  playwright-core@1.63.0:
+    resolution: {integrity: sha512-rYCsBF/M5HjUch52bbtVONEFjv6Xu8sm8h72dNlR5bzIE1fvC/bxgspzkjSfU+MweEMmPM8KJebG6nnyxo5mCg==}
+    engines: {node: '>=20'}
+    hasBin: true
+
+  playwright@1.63.0:
+    resolution: {integrity: sha512-+7ziBLidS4NaNCdt57SUDT+wYmmd5fmiQejUic/kb+YsYSCPyOOE9sebzMjNmQrsnNpDJqd4WHvV/8lfKfUDUg==}
+    engines: {node: '>=20'}
+    hasBin: true
+
   plop@4.0.5:
     resolution: {integrity: sha512-pJz6oWC9LyBp5mBrRp8AUV2RNiuGW+t/HOs4zwN+b/3YxoObZOOFvjn1mJMpAeKi2pbXADMFOOVQVTVXEdDHDw==}
     engines: {node: '>=18'}
@@ -9155,6 +9174,10 @@ snapshots:
   '@paralleldrive/cuid2@2.2.2':
     dependencies:
       '@noble/hashes': 1.8.0
+
+  '@playwright/test@1.63.0':
+    dependencies:
+      playwright: 1.63.0
 
   '@pmmmwh/react-refresh-webpack-plugin@0.5.17(react-refresh@0.14.0)(type-fest@4.41.0)(webpack-hot-middleware@2.26.1)(webpack@5.106.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.21))':
     dependencies:
@@ -15436,7 +15459,7 @@ snapshots:
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
 
-  next@16.2.10(@babel/core@7.29.7)(@opentelemetry/api@1.9.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+  next@16.2.10(@babel/core@7.29.7)(@opentelemetry/api@1.9.0)(@playwright/test@1.63.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
     dependencies:
       '@next/env': 16.2.10
       '@swc/helpers': 0.5.15
@@ -15456,6 +15479,7 @@ snapshots:
       '@next/swc-win32-arm64-msvc': 16.2.10
       '@next/swc-win32-x64-msvc': 16.2.10
       '@opentelemetry/api': 1.9.0
+      '@playwright/test': 1.63.0
       sharp: 0.34.5
     transitivePeerDependencies:
       - '@babel/core'
@@ -15812,6 +15836,12 @@ snapshots:
   player.style@0.0.8:
     dependencies:
       media-chrome: 4.2.3
+
+  playwright-core@1.63.0: {}
+
+  playwright@1.63.0:
+    dependencies:
+      playwright-core: 1.63.0
 
   plop@4.0.5(@types/node@20.19.43):
     dependencies:
