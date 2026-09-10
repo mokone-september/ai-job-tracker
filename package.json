@@ -4,6 +4,11 @@
   "packageManager": "pnpm@10.11.1",
   "scripts": {
     "dev:web": "pnpm --filter web dev",
-    "dev:cms": "pnpm --filter cms develop"
+    "dev:cms": "pnpm --filter cms develop",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0"
   }
 }

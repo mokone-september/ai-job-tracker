@@ -189,6 +189,24 @@ The Strapi admin panel runs at <http://localhost:1337/admin>.
 
 ## Available Scripts
 
+### End-to-end tests
+
+Install the Playwright browser once after installing workspace dependencies:
+
+```bash
+pnpm exec playwright install chromium
+```
+
+Run the browser smoke suite:
+
+```bash
+pnpm test:e2e
+```
+
+The suite starts the web app automatically and covers public navigation, dark
+mode persistence, and the analytics empty state. Tests do not require CMS,
+OpenAI, or email provider credentials.
+
 ### Workspace scripts
 
 | Command | Description |
@@ -267,7 +285,7 @@ SQLite configuration is intended for development, not production workloads.
 - [x] Dark mode
 - [x] Docker support
 - [ ] CI/CD with GitHub Actions
-- [ ] Testing with Playwright
+- [x] Testing with Playwright
 
 ## Contributing
 
